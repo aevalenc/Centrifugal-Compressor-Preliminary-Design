@@ -1,0 +1,7 @@
+1.50000 		% [kg/s] Mass flow rate
+100000.000000 	% [Pa] 	 Inlet pressure
+303.000000 		% [K]    Inlet temperature
+1.250000 		% [] 	 Pressure ratio
+0.000025 		% [m]    Surface roughness
+0.000500 		% [m] 	 Tip clearance
+0.1000 			% [] 	 Hub diameter
