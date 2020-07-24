@@ -20,10 +20,10 @@ All of these values are specificied in an input text file, inputs.txt.
 
 Example function execution
 
-Ds  = 4;            % Specific Diameter
-Oms = 0.6;          % Specific Speed
-eta = 0.8;          % Guess end to end efficiency
-fluid = 'air.txt';  % Working fluid
-mat = 'Steel';      % Compressor material
+Ds  = 4            % Specific Diameter
+Oms = 0.6          % Specific Speed
+eta = 0.8          % Guess end to end efficiency
+fluid = 'air.txt'  % Working fluid
+mat = 'Steel'      % Compressor material
 
 design = main('Preliminary', Ds, Oms, eta, fluid, mat);
