@@ -21,7 +21,7 @@ All of these values are specificied in an input text file, inputs.txt.
 Example function execution
 
  
-Ds  = 4    Specific Diameter 
+Ds  = 4    Specific Diameter \n
 Oms = 0.6  Specific Speed
 % Guess end to end efficiency
 eta = 0.8          
