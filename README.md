@@ -9,7 +9,7 @@ The code assumes the following knowns at the design stage
   3. Operating mass flow rate
   4. Desired pressure ratio
   
-Exducer diameter and rotational speed are determined by the Balje or Cordier diagram are arguments in the main function file. Once the working fluid is specified and an initial guesss for the end to end efficiency is provided, the code iterates until a design converges. A rudimentary stress analysis is in the works so a material is still required to run the code but will not affect the design.
+Exducer diameter and rotational speed are determined by the Balje or Cordier diagram. They are inputs in the "main" function. Once the working fluid is specified and an initial guesss for the end to end efficiency is provided, the code iterates until a design converges. A rudimentary stress analysis is in the works so a material is still required to run the code but will not affect the design.
 
 In addition to the prescibed knowns a few more parameters must be defined.
   1. Surface roughness
