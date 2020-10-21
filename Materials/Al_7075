@@ -1,0 +1,4 @@
+2810    % [kg/m^3] Density
+484e6   % [Pa]     Tensile yield strength
+331e6   % [Pa]     Shear yield strength
+0.33    % []       Poisson's ratio

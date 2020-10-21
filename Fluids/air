@@ -1,0 +1,4 @@
+1006        % [J/kgK]  Specific heat at constant pressure for T = 303K
+287         % [J/kgK]  Specific gas constant for H2
+1.4         % []       Specific ratio
+18.13e-6    % [Ns/m^2] Dynamic viscosity @ inlet total temperature
