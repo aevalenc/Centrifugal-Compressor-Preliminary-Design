@@ -1,4 +1,4 @@
-1.50000 		% [kg/s] Mass flow rate
+5.0000 		% [kg/s] Mass flow rate
 100000.000000 	% [Pa] 	 Inlet pressure
 303.000000 		% [K]    Inlet temperature
 1.250000 		% [] 	 Pressure ratio
