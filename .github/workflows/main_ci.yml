@@ -1,0 +1,53 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  [pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a multiple jobs
+  bazel-build-ccpd:
+    if: contains(github.event.pull_request.labels.*.name, 'check')
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: bazelbuild/setup-bazelisk@v1
+      - run: |
+          bazel build //ccpd/...
+
+  bazel-test-ccpd:
+    if: contains(github.event.pull_request.labels.*.name, 'check')
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: bazelbuild/setup-bazelisk@v1
+      - run: bazel test --cache_test_results=no --test_output=all //ccpd/...
+
+  bazel-run-ccpd-main:
+    if: contains(github.event.pull_request.labels.*.name, 'check')
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: bazelbuild/setup-bazelisk@v1
+      - run: bazel run //ccpd:main
