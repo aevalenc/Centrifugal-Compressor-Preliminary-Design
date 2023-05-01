@@ -5,7 +5,11 @@ name: CI
 # Controls when the workflow will run
 on:
   # Allows you to run this workflow manually from the Actions tab
-  [pull_request]
+  pull_request:
+    types: [opened, labeled, synchronize, edited]
+  issue_comment:
+    types:
+      - created
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,8 +29,24 @@ jobs:
       - run: |
           bazel build //ccpd/...
 
+  bazel-build-ccpd-with_comment:
+    if: ${{ github.event.issue.pull_request }}
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: bazelbuild/setup-bazelisk@v1
+      - run: |
+          bazel build //ccpd/...
+
   bazel-test-ccpd:
     if: contains(github.event.pull_request.labels.*.name, 'check')
+    needs: bazel-build-ccpd
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -42,6 +62,7 @@ jobs:
 
   bazel-run-ccpd-main:
     if: contains(github.event.pull_request.labels.*.name, 'check')
+    needs: bazel-build-ccpd
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -51,3 +72,11 @@ jobs:
           submodules: recursive
       - uses: bazelbuild/setup-bazelisk@v1
       - run: bazel run //ccpd:main
+
+  print_context:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo $EVENT_CONTEXT
