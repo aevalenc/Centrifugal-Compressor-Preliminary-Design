@@ -3,3 +3,6 @@ colorama==0.4.6
 scipy==1.10.0
 attrs==23.1.0
 Django==4.2.6
+sqlparse==0.4.4
+asgiref==3.7.2
+typing-extensions==4.8.0
