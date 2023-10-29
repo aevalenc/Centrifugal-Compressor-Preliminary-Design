@@ -16,7 +16,7 @@ py_library(
     name = "urls",
     srcs = ["urls.py"],
     visibility = ["//:__subpackages__"],
-    deps = ["//centrifugal_calculations:urls"],
+    deps = ["//neptune/ccpd:urls"],
 )
 
 py_library(
