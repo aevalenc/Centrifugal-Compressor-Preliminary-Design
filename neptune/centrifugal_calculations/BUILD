@@ -21,8 +21,8 @@ py_library(
 )
 
 py_library(
-    name = "models",
-    srcs = ["models.py"],
+    name = "views",
+    srcs = ["views.py"],
     deps = [
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
@@ -30,8 +30,17 @@ py_library(
 )
 
 py_library(
-    name = "views",
-    srcs = ["views.py"],
+    name = "urls",
+    srcs = ["urls.py"],
+    deps = [
+        ":views",
+        "@python_deps_django//:pkg",
+    ],
+)
+
+py_library(
+    name = "models",
+    srcs = ["models.py"],
     deps = [
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
