@@ -24,6 +24,7 @@ py_library(
     name = "views",
     srcs = ["views.py"],
     deps = [
+        "//ccpd_dev:main",
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
     ],

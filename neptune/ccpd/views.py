@@ -2,7 +2,8 @@
 Create your views here.
 """
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
+from ccpd_dev import main
 
 fluids = [
     {
@@ -21,14 +22,25 @@ fluids = [
     },
 ]
 
+context = {"fluids": fluids}
 
-def index(request) -> HttpResponse:
+
+def index(request: HttpRequest) -> HttpResponse:
     """
     pass a request to the index(home page)
     """
-    context = {"fluids": fluids}
     return render(request, "ccpd/home.html", context)
 
 
-def about(request) -> HttpResponse:
-    return render(request, "ccpd/about.html", {"title": "About"})
+def about(request: HttpRequest) -> HttpResponse:
+    return render(request, template_name="ccpd/about.html", context={"title": "About"})
+
+
+def run_hello_world(request: HttpRequest) -> HttpResponse:
+    print("hello world")
+    return render(request, "ccpd/home.html", context)
+
+
+def run_main(request: HttpRequest) -> HttpResponse:
+    main.main("Preliminary", [])
+    return render(request, "ccpd/home.html", context)
