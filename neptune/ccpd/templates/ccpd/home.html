@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
+{% extends "ccpd/base.html" %}
 
-<head>
-  <title></title>
-</head>
-
-<body>
-  <h1>Neptune home</h1>
-</body>
-
-</html>
+{% block content %}
+{% for fluid in fluids %}
+<h1>{{ fluid.name }}</h1>
+<!-- <p>Specific heat c<sub>p</sub> = {{ fluid.specific_heat }}</p> -->
+<p>Specific heat \(c_p\) = {{ fluid.specific_heat }}</p>
+<p>Specific gas constant R = {{ fluid.specific_gas_constant }}</p>
+{% endfor %}
+{% endblock content %}
