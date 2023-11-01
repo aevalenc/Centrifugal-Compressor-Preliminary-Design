@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "neptune.urls"
+ROOT_URLCONF = "neptune_web_ui.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "neptune.wsgi.application"
+WSGI_APPLICATION = "neptune_web_ui.wsgi.application"
 
 
 # Database

@@ -8,5 +8,6 @@ from . import views
 
 # Here we connect views to urls
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.index, name="ccpd-index"),
+    path("about/", views.about, name="ccpd-about"),
 ]
