@@ -90,6 +90,10 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+.dropdown {
+  position: relative;
+}
+
 /* Applies to all elements with <... class="someclass"> specified. */
 /* .container {
   color: red;

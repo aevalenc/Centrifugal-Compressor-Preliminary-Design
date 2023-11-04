@@ -1,17 +1,35 @@
 {% extends "ccpd/base.html" %}
-
 {% block content %}
-{% for fluid in fluids %}
-<h1>{{ fluid.name }}</h1>
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
 
-<!-- <p>Specific heat c<sub>p</sub> = {{ fluid.specific_heat }}</p> -->
-<p>Specific heat \(c_p\) = {{ fluid.specific_heat }}</p>
-<p>Specific gas constant R = {{ fluid.specific_gas_constant }}</p>
+      <div class="form-group">
+        <label for="Working fluid">Working Fluid</label>
+        <select class="form-control" id="Working fluid">
+          <option>hydrogen</option>
+          <option>air</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Run</button>
+
+    </form>
+
+  </div>
+
+
+<!-- <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Working fluid" aria-label="Working Fluid"
+    aria-describedby="basic-addon2">
+  <span class="input-group-text" id="basic-addon2"></span>
+</div> -->
 
 <!-- <button type="button" class="btn btn-success">Run</button> -->
 <!-- <input class="btn btn-primary" type="button" value="Run"> -->
-<a class="btn btn-primary" role="button" href="{% url 'ccpd-main' %}">Run</a>
+<!-- <button class="btn btn-primary" type="submit" href="{% url 'ccpd-run-main' %}">Run</button> -->
+<!-- <div class="form-group">
+  <button class="btn btn-primary" type="submit">Run</button>
+</div> -->
 
-
-{% endfor %}
 {% endblock content %}
