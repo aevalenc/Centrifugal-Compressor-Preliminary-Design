@@ -3,7 +3,7 @@ Create your views here.
 """
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from ccpd_dev import main
+from ccpd_dev.main import main
 
 fluids = [
     {
@@ -36,11 +36,16 @@ def about(request: HttpRequest) -> HttpResponse:
     return render(request, template_name="ccpd/about.html", context={"title": "About"})
 
 
-def run_hello_world(request: HttpRequest) -> HttpResponse:
-    print("hello world")
-    return render(request, "ccpd/home.html", context)
+def test(request: HttpRequest) -> HttpResponse:
+    print(f"Request method: {request.method}")
+    return render(request, "ccpd/test.html", context)
 
 
 def run_main(request: HttpRequest) -> HttpResponse:
-    main.main("Preliminary", [])
-    return render(request, "ccpd/home.html", context)
+    print(f"Request method: {request.method}")
+    if request.method == "POST":
+        main("Preliminary", [])
+        print(request)
+        return render(request, "ccpd/ccpd.html", context)
+    else:
+        return render(request, "ccpd/ccpd.html", context)
