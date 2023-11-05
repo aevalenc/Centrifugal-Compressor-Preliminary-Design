@@ -43,6 +43,7 @@ py_library(
     name = "models",
     srcs = ["models.py"],
     deps = [
+        "//ccpd_dev/data_types:centrifugal_compressor",
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
     ],
