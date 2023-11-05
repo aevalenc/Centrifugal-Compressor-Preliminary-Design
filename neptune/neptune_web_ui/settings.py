@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "ccpd.apps.CCPDConfig",
+    "ccpd_ui.apps.CCPDConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

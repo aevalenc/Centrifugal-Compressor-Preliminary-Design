@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("", include("ccpd.urls")),
+    path("", include("ccpd_ui.urls")),
     path("admin/", admin.site.urls),
 ]
