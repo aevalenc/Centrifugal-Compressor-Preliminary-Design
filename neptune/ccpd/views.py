@@ -4,6 +4,8 @@ Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from ccpd_dev.main import main
+import json
+import logging
 
 fluids = [
     {
@@ -24,6 +26,9 @@ fluids = [
 
 context = {"fluids": fluids}
 
+logging.basicConfig(filename="/home/aevalenc/test_log.log", encoding="utf-8", level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 def index(request: HttpRequest) -> HttpResponse:
     """
@@ -42,10 +47,12 @@ def test(request: HttpRequest) -> HttpResponse:
 
 
 def run_main(request: HttpRequest) -> HttpResponse:
-    print(f"Request method: {request.method}")
     if request.method == "POST":
+        data = request.POST.dict()
+        with open("/home/aevalenc/neptune_inputs.json", "w") as input_file:
+            logger.info("Dumping inputs")
+            json.dump(data, input_file, indent=4)
         main("Preliminary", [])
-        print(request)
         return render(request, "ccpd/ccpd.html", context)
     else:
         return render(request, "ccpd/ccpd.html", context)

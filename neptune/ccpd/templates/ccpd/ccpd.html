@@ -1,35 +1,66 @@
 {% extends "ccpd/base.html" %}
 {% block content %}
-  <div class="content-section">
-    <form method="POST">
-      {% csrf_token %}
+<div class="content-section">
 
-      <div class="form-group">
-        <label for="Working fluid">Working Fluid</label>
-        <select class="form-control" id="Working fluid">
-          <option>hydrogen</option>
-          <option>air</option>
-        </select>
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group row mb-3">
+      <div class="col">
+        <label for="MassFlowRate">Mass flow rate \(kg/s\)</label>
+        <input class="form-control" id="MassFlowRate" name="mass_flow_rate">
+
+        <label for="InletTotalPressure">Inlet Total Pressure \(Pa\)</label>
+        <input class="form-control" id="InletTotalPressure" name="inlet_total_pressure">
+
+        <label for="InletTotalTemperature">Inlet Total Temperature \(K\)</label>
+        <input class="form-control" id="InletTotalTemperature" name="inlet_total_temperature">
+
+        <label for="CompressionRatio">Compression Ratio</label>
+        <input class="form-control" id="CompressionRatio" name="compression_ratio">
+
+        <label for="SurfaceRoughness">Surface Roughness</label>
+        <input class="form-control" id="SurfaceRoughness" name="surface_roughness">
+
+        <label for="TipClearance">Tip clearance \(m\)</label>
+        <input class="form-control" id="TipClearance" name="tip_clearance">
+
+        <label for="HubDiameter">Hub diameter \(m\)</label>
+        <input class="form-control" id="HubDiameter" name="hub_diameter">
+
+        <label for="OutletAngle">Outlet absolute angle guess \(\circ\)</label>
+        <input class="form-control" id="OutletAngle" name="outlet_angle_guess">
+
       </div>
 
-      <button type="submit" class="btn btn-primary">Run</button>
+      <div class="col">
+        <label for="SpecificDiameter">Specific Diameter \(kg/s\)</label>
+        <input class="form-control" id="SpecificDiameter" name="specific_diameter">
 
-    </form>
+        <label for="SpecificRotationalSpeed">Specific Rotational Speed \(Pa\)</label>
+        <input class="form-control" id="SpecificRotationalSpeed" name="specific_rotational_speed">
 
-  </div>
+        <label for="EndToEndEfficiency">End to End Efficiency \(K\)</label>
+        <input class="form-control" id="EndToEndEfficiency" name="end_to_end_efficiency">
 
+        <label for="Working fluid">Working Fluid</label>
+        <select class="form-control" id="Working fluid" name="fluid">
+          <option>air</option>
+          <option>hydrogen</option>
+        </select>
 
-<!-- <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Working fluid" aria-label="Working Fluid"
-    aria-describedby="basic-addon2">
-  <span class="input-group-text" id="basic-addon2"></span>
-</div> -->
+        <label for="Compressor Material">Compressor Material</label>
+        <select class="form-control" id="Working fluid" name="material">
+          <option>Al_7075</option>
+          <option>steel</option>
+        </select>
 
-<!-- <button type="button" class="btn btn-success">Run</button> -->
-<!-- <input class="btn btn-primary" type="button" value="Run"> -->
-<!-- <button class="btn btn-primary" type="submit" href="{% url 'ccpd-run-main' %}">Run</button> -->
-<!-- <div class="form-group">
-  <button class="btn btn-primary" type="submit">Run</button>
-</div> -->
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Run</button>
+  </form>
 
+</div>
+
+</div>
 {% endblock content %}
