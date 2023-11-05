@@ -1,5 +1,5 @@
 from django.db import models
-from ccpd_dev.data_types.centrifugal_compressor import CentrifugalCompressor
+from ccpd.data_types.centrifugal_compressor import CentrifugalCompressor
 
 
 # Create your models here.
