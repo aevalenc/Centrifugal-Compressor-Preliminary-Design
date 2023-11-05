@@ -24,7 +24,7 @@ py_library(
     name = "views",
     srcs = ["views.py"],
     deps = [
-        "//ccpd_dev:main",
+        "//ccpd:main",
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
     ],
@@ -43,7 +43,7 @@ py_library(
     name = "models",
     srcs = ["models.py"],
     deps = [
-        "//ccpd_dev/data_types:centrifugal_compressor",
+        "//ccpd/data_types:centrifugal_compressor",
         "@python_deps_colorama//:pkg",
         "@python_deps_django//:pkg",
     ],
