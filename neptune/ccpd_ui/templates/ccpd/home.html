@@ -1,0 +1,17 @@
+{% extends "ccpd/base.html" %}
+
+{% block content %}
+{% for fluid in fluids %}
+<h1>{{ fluid.name }}</h1>
+
+<!-- <p>Specific heat c<sub>p</sub> = {{ fluid.specific_heat }}</p> -->
+<p>Specific heat \(c_p\) = {{ fluid.specific_heat }}</p>
+<p>Specific gas constant R = {{ fluid.specific_gas_constant }}</p>
+
+<!-- <button type="button" class="btn btn-success">Run</button> -->
+<!-- <input class="btn btn-primary" type="button" value="Run"> -->
+<!-- <a class="btn btn-primary" href="{% url 'ccpd-run-main' %}">Run</a> -->
+
+{% endfor %}
+
+{% endblock content %}
