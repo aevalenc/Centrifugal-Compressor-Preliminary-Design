@@ -3,7 +3,7 @@ Create your views here.
 """
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from ccpd_dev.main import main
+from ccpd.main import main as ccpd_main
 import json
 import logging
 
@@ -52,7 +52,7 @@ def run_main(request: HttpRequest) -> HttpResponse:
         with open("/home/aevalenc/neptune_inputs.json", "w") as input_file:
             logger.info("Dumping inputs")
             json.dump(data, input_file, indent=4)
-        main("Preliminary", [])
+        ccpd_main("Preliminary", [])
         return render(request, "ccpd/ccpd.html", context)
     else:
         return render(request, "ccpd/ccpd.html", context)
