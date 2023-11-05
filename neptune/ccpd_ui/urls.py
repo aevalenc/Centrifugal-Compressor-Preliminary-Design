@@ -4,7 +4,7 @@ Update: October 29, 2023
 """
 
 from django.urls import path
-from neptune.ccpd import views
+from neptune.ccpd_ui import views
 
 # Here we connect views to urls
 urlpatterns = [
