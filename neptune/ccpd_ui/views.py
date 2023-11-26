@@ -49,10 +49,12 @@ def test(request: HttpRequest) -> HttpResponse:
 def run_main(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         data = request.POST.dict()
-        with open("/home/aevalenc/neptune_inputs.json", "w") as input_file:
+        del data["csrfmiddlewaretoken"]
+        with open("ccpd/neptune_inputs.json", "w") as input_file:
             logger.info("Dumping inputs")
             json.dump(data, input_file, indent=4)
-        ccpd_main("Preliminary", [])
-        return render(request, "ccpd/ccpd.html", context)
+        compressor = ccpd_main("Preliminary", [])
+        compressor_viewable = compressor
+        return render(request, "ccpd/ccpd.html", {"compressor": compressor.__dict__})
     else:
         return render(request, "ccpd/ccpd.html", context)

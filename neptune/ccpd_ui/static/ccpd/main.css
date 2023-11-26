@@ -3,7 +3,8 @@ selectors). */
 body {
   margin: 5rem;
   background-color: rgb(255, 255, 255);
-  font-family: arial, sans-serif;
+  font-family: 'Roboto';
+  /* font-family: arial, sans-serif; */
   /* font-size: 14px; */
 }
 
@@ -95,11 +96,19 @@ a.article-title:hover {
 }
 
 /* Applies to all elements with <... class="someclass"> specified. */
-/* .container {
-  color: red;
-} */
+.container {
+  border: #333;
+}
+
+.input {
+  font-family: "Helvetica Neue";
+}
 
 /* Applies to the element with <... id="someid"> specified. */
 #someid {
   color: green;
+}
+
+.table-hover {
+  background-color: green;
 }
