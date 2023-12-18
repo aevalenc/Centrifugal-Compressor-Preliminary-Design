@@ -4,6 +4,7 @@
 
 # Bazel output symlinks: Same reasoning as /external. You need the * because people can change the name of the directory your repository is cloned into, changing the bazel-<workspace_name> symlink.
 /bazel-*
+MODULE.bazel.*
 
 # Compiled output -> don't check in
 /compile_commands.json
