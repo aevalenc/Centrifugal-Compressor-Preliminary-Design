@@ -26,7 +26,6 @@ fluids = [
 
 context = {"fluids": fluids}
 
-logging.basicConfig(filename="/home/aevalenc/test_log.log", encoding="utf-8", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
@@ -53,8 +52,9 @@ def run_main(request: HttpRequest) -> HttpResponse:
         with open("ccpd/neptune_inputs.json", "w") as input_file:
             logger.info("Dumping inputs")
             json.dump(data, input_file, indent=4)
+
         compressor = ccpd_main("Preliminary", [])
-        compressor_viewable = compressor
+        logger.debug(f"Generated compressor: {compressor.__dict__}")
         return render(request, "ccpd/ccpd.html", {"compressor": compressor.__dict__})
     else:
         return render(request, "ccpd/ccpd.html", context)
