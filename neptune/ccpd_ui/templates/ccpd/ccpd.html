@@ -76,7 +76,10 @@
       <tr>
         <td>Flow Coefficient</td>
         {% if compressor.flow_coefficient %}
-        <td>{{ compressor.flow_coefficient }}</td>
+        <td id="flow_coefficient"></td>
+        <script>
+          document.getElementById("flow_coefficient").innerHTML = Math.round({{ compressor.flow_coefficient }} * 10000)/10000
+        </script>
         {% else %}
         <td>-</td>
         {% endif %}
@@ -84,7 +87,10 @@
       <tr>
         <td>Stage loading</td>
         {% if compressor.stage_loading %}
-        <td>{{ compressor.stage_loading }}</td>
+        <td id="compressor_stage_loading"></td>
+        <script>
+          document.getElementById("compressor_stage_loading").innerHTML = Math.round({{ compressor.stage_loading }} * 10000)/10000
+        </script>
         {% else %}
         <td>-</td>
         {% endif %}
@@ -92,7 +98,10 @@
       <tr>
         <td>Blade orientation ratio</td>
         {% if compressor.blade_orientation_ratio %}
-        <td>{{ compressor.blade_orientation_ratio }}</td>
+        <td id="compressor_blade_orientation_ratio"></td>
+        <script>
+          document.getElementById("compressor_blade_orientation_ratio").innerHTML = Math.round({{ compressor.blade_orientation_ratio }} * 10000)/10000
+        </script>
         {% else %}
         <td>-</td>
         {% endif %}
