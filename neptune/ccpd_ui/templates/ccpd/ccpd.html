@@ -2,13 +2,14 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-
-  <div class="col-sm">
-  <form method="POST">
-    {% csrf_token %}
-    <div class="form-group row mb-3" id="DesignInputs">
-      <legend class="border-bottom mb-4">Design Inputs</legend>
-      <div class="col">
+    
+    <div class="col-sm">
+      <form method="POST">
+        {% csrf_token %}
+        <button id="FillExampleValuesBtn" type="submit" class="btn btn-primary">Example Values</button>
+        <div class="form-group row mb-3" id="DesignInputs">
+          <legend class="border-bottom mb-4">Design Inputs</legend>
+        <div class="col">
         <label for="MassFlowRate">Mass flow rate \(kg/s\)</label>
         <input class="form-control" id="MassFlowRate" name="mass_flow_rate" required>
 

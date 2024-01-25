@@ -53,7 +53,7 @@ def run_main(request: HttpRequest) -> HttpResponse:
             logger.info("Dumping inputs")
             json.dump(data, input_file, indent=4)
 
-        compressor = ccpd_main("Preliminary", [])
+        compressor = ccpd_main("Preliminary", "gui")
         logger.debug(f"Generated compressor: {compressor.__dict__}")
         return render(request, "ccpd/ccpd.html", {"compressor": compressor.__dict__})
     else:
