@@ -4,29 +4,31 @@ Main bazel MODULE file
 
 module(name = "ccpd-pro", version = "0.2.0")
 
-# Python rules
 bazel_dep(name = "rules_python", version = "0.27.1")
+bazel_dep(name = "rules_oci", version = "1.6.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.0.0-rc1")
+bazel_dep(name = "rules_pkg", version = "0.10.0")
 
+# Python rules
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 
 python.toolchain(
     is_default = True,
-    python_version = "3.10",
+    python_version = "3.10.2",
 )
-use_repo(python, "python_3_10", "python_versions")
+use_repo(python, "python_3_10_2", "python_versions")
 
 pip.parse(
     name = "pip",
-    python_version = "3.10",
+    python_version = "3.10.2",
     requirements_lock = "//third_party:requirements_lock.txt",
 )
 
 use_repo(pip, "pip")
 
-bazel_dep(name = "rules_oci", version = "1.6.0")
+# OCI rules
 # For testing, we also recommend https://registry.bazel.build/modules/container_structure_test
-
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 
 # Declare external images you need to pull, for example:
@@ -35,9 +37,10 @@ oci.pull(
     # 'latest' is not reproducible, but it's convenient.
     # During the build we print a WARNING message that includes recommended 'digest' and 'platforms'
     # values which you can use here in place of 'tag' to pin for reproducibility.
-    tag = "latest",
-    image = "gcr.io/distroless/base",
-    platforms = ["linux/amd64"],
+    image = "ubuntu",
+    digest = "sha256:bac6081102aae54ba4bcc714695b8f637e42768c7f376f374c428bab043ddc0f",
+    # tag = "20.04",
+    # platforms = ["linux/amd64"],
 )
 
 # For each oci.pull call, repeat the "name" here to expose them as dependencies.
