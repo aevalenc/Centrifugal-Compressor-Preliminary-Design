@@ -2,38 +2,35 @@
 selectors). */
 body {
   margin: 5rem;
-  background-color: rgb(255, 255, 255);
-  font-family: 'Roboto';
-  /* font-family: arial, sans-serif; */
-  /* font-size: 14px; */
+  font-size: 14px;
 }
 
 /* Applies to all <h1>...</h1> elements. */
-h1 {
-  /* font-size: 35px; */
+/* h1 {
+  font-size: 35px;
   font-weight: normal;
-  /* margin-top: 5px; */
-}
+  margin-top: 5px;
+} */
 
-ul {
+/* ul {
   margin: 0;
-}
+} */
 
 .bg-steel {
   background-color: rgb(148, 0, 255);
 }
 
-.site-header .navbar-nav .nav-link {
+/* .site-header .navbar-nav .nav-link {
   color: #cbd5db;
-}
+} */
 
-.site-header .navbar-nav .nav-link:hover {
+/* .site-header .navbar-nav .nav-link:hover {
   color: #ffffff;
-}
+} */
 
-.site-header .navbar-nav .nav-link.active {
+/* .site-header .navbar-nav .nav-link.active {
   font-weight: 500;
-}
+} */
 
 
 .content-section {
@@ -56,6 +53,7 @@ a.article-title:hover {
 .article-content {
   white-space: pre-line;
 }
+
 
 .article-img {
   height: 65px;
@@ -95,20 +93,17 @@ a.article-title:hover {
   position: relative;
 }
 
+
 /* Applies to all elements with <... class="someclass"> specified. */
 .container {
   border: #333;
 }
 
-.input {
-  font-family: "Helvetica Neue";
-}
-
 /* Applies to the element with <... id="someid"> specified. */
-#someid {
+/* #someid {
   color: green;
 }
 
 .table-hover {
   background-color: green;
-}
+} */

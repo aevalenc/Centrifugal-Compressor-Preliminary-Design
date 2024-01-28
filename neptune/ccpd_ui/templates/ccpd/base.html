@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="light">
 
 <head>
   <meta charset="utf-8">
@@ -33,10 +33,17 @@
             <a class="nav-item nav-link" href="{% url 'ccpd-about' %}">Documentation</a>
             <a class="nav-item nav-link" href="{% url 'ccpd-run-main' %}">Run</a>
           </div>
+
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="{% url 'ccpd-test' %}">Test</a>
             <a class="nav-item nav-link" href="#">Register</a>
+          </div>
+
+          {% comment %} <button type="button" id="dark_mode_btn_switch">Dark Mode</button> {% endcomment %}
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="DarkModeSwitchCheckDefault">
+            <label class="form-check-label" for="DarkModeSwitchCheckDefault">Dark Mode</label>
           </div>
         </div>
       </div>
@@ -74,6 +81,7 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script>
 
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script id="dark_mode_button-script" async src="{% static 'ccpd/dark_mode_button.js' %}"></script>
 </body>
 
 
