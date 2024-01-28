@@ -4,10 +4,11 @@ Main bazel MODULE file
 
 module(name = "ccpd-pro", version = "0.2.0")
 
-bazel_dep(name = "rules_python", version = "0.27.1")
+bazel_dep(name = "rules_python", version = "0.29.0")
 bazel_dep(name = "rules_oci", version = "1.6.0")
 bazel_dep(name = "aspect_bazel_lib", version = "2.0.0-rc1")
 bazel_dep(name = "rules_pkg", version = "0.10.0")
+bazel_dep(name = "platforms", version = "0.0.7")
 
 # Python rules
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
@@ -43,5 +44,35 @@ oci.pull(
     # platforms = ["linux/amd64"],
 )
 
+oci.pull(
+    name = "python_3_10_alpine",
+    # 'latest' is not reproducible, but it's convenient.
+    # During the build we print a WARNING message that includes recommended 'digest' and 'platforms'
+    # values which you can use here in place of 'tag' to pin for reproducibility.
+    image = "python",
+    digest = "sha256:44b68b635fd8970b155bc8c6ea392af9d4201aaf1c1f8a19ae03229eaf890ecd",
+    # tag = "20.04",
+    # platforms = ["linux/amd64"],
+)
+
+oci.pull(
+    name = "python_base",
+    # 'latest' is not reproducible, but it's convenient.
+    # During the build we print a WARNING message that includes recommended 'digest' and 'platforms'
+    # values which you can use here in place of 'tag' to pin for reproducibility.
+    digest = "sha256:844b3044eef9d990d3c640e046241ac3963cf6bf4a4cd6b831bf3e1752687698",
+    image = "index.docker.io/library/python",
+    platforms = [
+        # "linux/386",
+        "linux/amd64",
+        # "linux/arm/v5",
+        # "linux/arm/v7",
+        # "linux/arm64/v8",
+        # "linux/ppc64le",
+        # "linux/s390x",
+    ],
+)
+
 # For each oci.pull call, repeat the "name" here to expose them as dependencies.
 use_repo(oci, "ubuntu")
+use_repo(oci, "python_base")

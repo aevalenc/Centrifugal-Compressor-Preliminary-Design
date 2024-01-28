@@ -10,6 +10,7 @@ py_library(
     name = "settings",
     srcs = ["settings.py"],
     visibility = ["//:__subpackages__"],
+    deps = ["//neptune/ccpd_ui:apps"],
 )
 
 py_library(

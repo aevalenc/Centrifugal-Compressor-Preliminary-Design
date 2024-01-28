@@ -2,14 +2,13 @@
 
 load("@aspect_bazel_lib//lib:tar.bzl", "mtree_spec", "tar")
 load("@rules_oci//oci:defs.bzl", "oci_image")
-load("@rules_pkg//pkg:pkg.bzl", "pkg_tar")
 
-pkg_tar(
-    name = "app",
-    srcs = ["test.sh"],
-    mode = "0755",
-    package_dir = "/usr/bin",
-)
+# pkg_tar(
+#     name = "app",
+#     srcs = ["test.sh"],
+#     mode = "0755",
+#     package_dir = "/usr/bin",
+# )
 
 # match *only* external repositories that have the string "python"
 # e.g. this will match
