@@ -34,11 +34,9 @@ def temp_fill_include_path(fp: str) -> Generator[None, None, None]:
         print("Opened WORKSPACE file")
         try:
             content = f.read()
-            logger.info(f"Read content: {content}")
             replaced = content.replace(
                 PYTHON_INCLUDE_PATH_PLACEHOLDER, Path(sysconfig.get_paths()["include"]).as_posix()
             )
-            logger.info(f"Replaced python path: {replaced}")
             f.seek(0)
             f.write(replaced)
             f.truncate()
@@ -53,7 +51,7 @@ def temp_fill_include_path(fp: str) -> Generator[None, None, None]:
 class BazelExtension(setuptools.Extension):
     """A C/C++ extension that is defined as a Bazel BUILD target."""
 
-    def __init__(self, name: str, bazel_target: str, is_python_library: bool):
+    def __init__(self, name: str, bazel_target: str, is_pybind_library: bool):
         super().__init__(name=name, sources=[])
 
         self.bazel_target = bazel_target
@@ -61,7 +59,7 @@ class BazelExtension(setuptools.Extension):
         self.relpath, self.target_name = stripped_target.split(":")
         logger.debug(f"Relative path: {self.relpath}")
         logger.debug(f"Target name: {self.target_name}")
-        self.is_python_library = is_python_library
+        self.is_pybind_library = is_pybind_library
 
 
 class BazelBuildExtension(build_ext.build_ext):
@@ -123,16 +121,18 @@ class BazelBuildExtension(build_ext.build_ext):
 
                 self.spawn(bazel_argv)
 
-                if not bazel_extension.is_python_library:
+                if not bazel_extension.is_pybind_library:
 
                     shared_lib_suffix = ".dll" if IS_WINDOWS else ".so"
-                    ext_name = bazel_extension.target_name + shared_lib_suffix
+                    ext_name = bazel_extension.name + shared_lib_suffix
                     ext_bazel_bin_path = temp_path / "bazel-bin" / bazel_extension.relpath / ext_name
 
                     logger.info(f"extension name: {ext_name}")
                     logger.info(f"ext_bazel_bin_path: {ext_bazel_bin_path}")
 
-                    ext_dest_path = Path(self.get_ext_fullpath(bazel_extension.name))
+                    ext_dest_path = (
+                        Path(self.get_ext_fullpath(bazel_extension.name)).parent / bazel_extension.relpath / ext_name
+                    )
                     logger.info(f"ext_dest_path: {ext_dest_path}")
 
                     shutil.copyfile(ext_bazel_bin_path, ext_dest_path)
@@ -147,11 +147,10 @@ setuptools.setup(
     version=__version__,
     description="Data types from CCPD",
     author="Alejandro Valencia",
-    # license="Apache 2.0",
     ext_modules=[
         BazelExtension("thermo_point", "//ccpd/data_types:thermo_point", True),
-        BazelExtension("_constants", "//ccpd/cc_libraries:constants", False),
+        BazelExtension("_constants", "//ccpd/cc_libraries:py_constants", False),
     ],
     cmdclass=dict(build_ext=BazelBuildExtension),
-    packages=["ccpd/data_types"],
+    packages=["ccpd/data_types", "ccpd/cc_libraries"],
 )
